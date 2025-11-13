@@ -74,7 +74,7 @@
                 }
             ],
             "batch_size": 2,
-            "max_instances": null
+            "max_instances": 4
         }
     },
     "language_model": {
@@ -102,7 +102,7 @@
             "tool_parser": null,
             "tools": null
         },
-        "__path__": "/app/configs/gpt-oss-20b.jsonnet"
+        "__path__": "configs/gpt-oss-20b.jsonnet"
     },
     "metadata": {
         "python_version": "3.10.12 (main, Aug 15 2025, 14:32:43) [GCC 11.4.0]",

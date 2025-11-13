@@ -1,10 +1,10 @@
 {
-    "char_f1": 0.02360000000000011,
+    "char_f1": 0.34274000000000027,
     "exact_match": 0.0,
-    "finish_reason_ratio-length": 0.994,
-    "finish_reason_ratio-stop": 0.006,
-    "avg_output_length": 395.661,
-    "max_output_length": 588,
-    "min_output_length": 223,
-    "elapsed_time": 543.819839829579
+    "finish_reason_ratio-stop": 0.765,
+    "finish_reason_ratio-length": 0.235,
+    "avg_output_length": 1626.865,
+    "max_output_length": 7153,
+    "min_output_length": 258,
+    "elapsed_time": 3743.2535730544478
 }

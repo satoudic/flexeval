@@ -34,7 +34,9 @@
         },
       },
     ],
-    gen_kwargs: { max_new_tokens: 128, stop_sequences: ['<|return|>'], temperature: 1, top_p: 1, top_k: 0 },
+    // GPT-OSS-20B outputs Harmony-style analysis + final channel text, so we need
+    // enough headroom to reach the final answer segment instead of truncating.
+    gen_kwargs: { max_new_tokens: 1536, stop_sequences: ['<|return|>'], temperature: 0, top_p: 1, top_k: 0 },
     batch_size: 2,
   },
 }
