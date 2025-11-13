@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-cudnn8-runtime-ubuntu20.04 as base
+FROM nvidia/cuda:12.6.3-cudnn-devel-ubuntu22.04 as base
 
 ### Install python 3.10 and set it as default python interpreter
 RUN  apt update &&  apt install software-properties-common -y && \
@@ -14,7 +14,7 @@ FROM base as build
 
 WORKDIR /tmp
 
-RUN pip install poetry
+RUN pip install poetry poetry-plugin-export
 
 COPY ./pyproject.toml ./poetry.lock* /tmp/
 
@@ -27,6 +27,9 @@ WORKDIR /app
 COPY --from=build /tmp/requirements.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir -r /code/requirements.txt
+RUN pip install --no-cache-dir "triton>=3.4.0"
+# FlashInfer (optional, improves performance but not required)
+# RUN pip install --no-cache-dir flashinfer -i https://flashinfer.ai/whl/cu124/torch2.4/
 RUN python -m unidic download  # required for fugashi
 
 # アプリケーションのコードをコピー

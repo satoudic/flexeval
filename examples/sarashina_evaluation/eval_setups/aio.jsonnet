@@ -31,7 +31,7 @@
         },
       },
     ],
-    gen_kwargs: { max_new_tokens: 64, stop_sequences: ['」'], do_sample: false },
+    gen_kwargs: { max_new_tokens: 64, stop_sequences: ['」'] },
     batch_size: 1,
   },
 }

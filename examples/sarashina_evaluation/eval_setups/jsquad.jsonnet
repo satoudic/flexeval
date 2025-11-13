@@ -65,7 +65,7 @@
         },
       },
     ],
-    gen_kwargs: { max_new_tokens: 64, stop_sequences: ['\n\n'], do_sample: false },
+    gen_kwargs: { max_new_tokens: 64, stop_sequences: ['\n\n'] },
     batch_size: 1,
   },
 }

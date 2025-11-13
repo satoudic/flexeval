@@ -1,0 +1,44 @@
+services:
+  flexeval:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: flexeval:latest
+    container_name: flexeval
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+      - HF_HOME=/workspace/.cache/huggingface
+    volumes:
+      # ソースコードをマウント（開発時に便利）
+      - ./flexeval:/app/flexeval
+      - ./tests:/app/tests
+      - ./internal:/app/internal
+      - ./docs:/app/docs
+      # 設定ファイルと例のマウント
+      - ./configs:/app/configs
+      - ./examples:/app/examples
+      - ./scripts:/app/scripts
+      # データやモデルを保存する場合
+      - ./data:/app/data
+      - ./models:/app/models
+      # Hugging Faceキャッシュの永続化
+      - ${HOME}/work/hf_cache:/workspace/.cache/huggingface
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    # デフォルトコマンドは bash シェル
+    command: /bin/bash
+    # ネットワークポートが必要な場合（例：API サーバー）
+    ports:
+      - "8000:8000"
+    # メモリ制限（必要に応じて調整）
+    shm_size: '32gb'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['3', '4','5', '6']
+              capabilities: [gpu]

@@ -1,0 +1,9 @@
+{
+    "char_f1": 0.6926495726495727,
+    "exact_match": 0.5641025641025641,
+    "finish_reason_ratio-stop": 1.0,
+    "avg_output_length": 59.12820512820513,
+    "max_output_length": 104,
+    "min_output_length": 38,
+    "elapsed_time": 1078.4300643242896
+}
