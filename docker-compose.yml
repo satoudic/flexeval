@@ -4,7 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: flexeval:latest
-    container_name: flexeval
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=compute,utility
@@ -32,7 +31,7 @@ services:
     command: /bin/bash
     # ネットワークポートが必要な場合（例：API サーバー）
     ports:
-      - "8000:8000"
+      - "${FLEXEVAL_PORT:-18000}:8000"
     # メモリ制限（必要に応じて調整）
     shm_size: '32gb'
     deploy:

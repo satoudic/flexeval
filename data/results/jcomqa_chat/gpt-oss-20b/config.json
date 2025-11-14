@@ -21,11 +21,11 @@
                 }
             },
             "gen_kwargs": {
-                "max_new_tokens": 128,
+                "max_new_tokens": 1536,
                 "stop_sequences": [
                     "<|return|>"
                 ],
-                "temperature": 1,
+                "temperature": 0,
                 "top_k": 0,
                 "top_p": 1
             },
@@ -74,7 +74,7 @@
                 }
             ],
             "batch_size": 1,
-            "max_instances": null
+            "max_instances": 5
         }
     },
     "language_model": {
@@ -90,7 +90,7 @@
             "add_special_tokens": false,
             "custom_chat_template": null,
             "chat_template_kwargs": null,
-            "system_message": null,
+            "system_message": "あなたはクイズ回答に特化したアシスタントです。与えられた指示に従い、思考過程や余計な会話を出力せず、日本語で『答えは「<回答>」』の形だけを最終チャンネルに返してください。",
             "default_gen_kwargs": {
                 "min_p": 0,
                 "temperature": 1,

@@ -18,8 +18,14 @@ fi
 MODEL_CONFIG="/app/configs/gpt-oss-20b.jsonnet"
 
 # タスクリスト
-#TASKS=("aio" "jcomqa" "jemhopqa" "jsquad" "niilcqa")
-TASKS=("aio")
+TASKS=("aio" "jcomqa" "jemhopqa" "jsquad" "niilcqa")
+
+# デバッグ用途で処理件数を制限したい場合は MAX_INSTANCES を外部から与える
+MAX_INSTANCE_ARGS=()
+if [[ -n "${MAX_INSTANCES}" ]]; then
+  echo "max_instances override: ${MAX_INSTANCES}"
+  MAX_INSTANCE_ARGS=(--eval_setup.init_args.max_instances "${MAX_INSTANCES}")
+fi
 
 echo "====================================="
 echo "gpt-oss-20bでの評価を開始します"
@@ -53,7 +59,8 @@ for TASK in "${TASKS[@]}"; do
     --language_model "${MODEL_CONFIG}" \
     --eval_setup "${EVAL_SETUP}" \
     --save_dir "${SAVE_DIR}" \
-    --force true
+    --force true \
+    "${MAX_INSTANCE_ARGS[@]}"
   
   if [ $? -eq 0 ]; then
     echo "タスク: ${TASK} が正常に完了しました"
