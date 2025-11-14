@@ -14,6 +14,15 @@ else
   echo "コンテナは既に起動しています"
 fi
 
+# flexevalコンテナが稼働中で既存タスクが動いていれば通知して終了
+RUNNING_CONTAINER=$(docker compose ps -q flexeval 2>/dev/null || true)
+if [[ -n "$RUNNING_CONTAINER" ]]; then
+  if docker compose exec -T flexeval pgrep -f flexeval_lm >/dev/null 2>&1; then
+    echo "flexevalコンテナでflexeval_lmが稼働中のため、新規実行を中止します。"
+    exit 1
+  fi
+fi
+
 # gpt-oss-20bを使用したモデル設定
 MODEL_CONFIG="/app/configs/gpt-oss-20b.jsonnet"
 
